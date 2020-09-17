@@ -1,0 +1,218 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: $body-bg;
+  height: 100%;
+}
+
+body {
+  font: normal .75rem/1 $main-font;
+}
+
+table {
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input,
+button {
+  outline: none !important;
+  font-family: $main-font;
+}
+button {
+  cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.app {
+  padding: 3rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+// решил не придумывать бутстрап и просто захардкодил размеры
+.row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 -.5rem;
+}
+.col-6 {
+  width: 50%;
+  padding: 0 .5rem;
+}
+.col-wrapper-1 {
+  width: 33.3333%;
+  padding: 0 .75rem 2rem;
+}
+.col-wrapper-2 {
+  width: 66.6667%;
+  padding: 0 .75rem 2rem;
+}
+.table-wrapper {
+  width: 100%;
+  padding: 0 .75rem 2rem;
+}
+
+
+
+.link {
+  text-decoration: underline;
+  transition: color .2s ease-in-out;
+
+  &-primary {
+    color: $link-primary;
+
+    &:hover {
+      color: darken($link-primary, 20%);
+    }
+  }
+  &-danger {
+    color: $link-danger;
+
+    &:hover {
+      color: darken($link-danger, 20%);
+    }
+  }
+}
+
+.form {
+  width: 100%;
+  display: block;
+  padding: 1.125rem 1rem 1.5rem;
+  background: #fff;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+}
+
+.form-element {
+  display: block;
+  width: 100%;
+
+  &_half {
+    width: 50%;
+  }
+  &--input {
+    width: 100%;
+    display: block;
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+    background: #fff;
+    padding: 0 1.125rem;
+    height: 2.625rem;
+    font-size: .75rem;
+    color: $text-darkgray;
+    transition: box-shadow .1s ease-in-out;
+    box-shadow: 0 0 0 0 transparent;
+
+    &::placeholder {
+      color: $text-lightgray;
+    }
+    &:focus {
+      box-shadow: 0 0 5px 0 rgba(19, 147, 255, .5);
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
+  }
+  &--button {
+    width: 100%;
+    display: block;
+    border: 1px solid $primary;
+    border-radius: $border-radius;
+    background: $primary;
+    color: #fff;
+    font-size: .875rem;
+    font-weight: bold;
+    transition: all .2s ease-in-out;
+    text-transform: uppercase;
+    line-height: 1.3rem;
+    padding: .625rem 1.125rem;
+
+    &:hover {
+      background: #fff;
+      color: $primary;
+    }
+  }
+}
+.form {
+  &--element-wrapper {
+    margin-bottom: 1.125rem;
+  }
+  &--controls-wrapper {
+    display: flex;
+    justify-content: center;
+
+    &_indent {
+      margin-top: 1.875rem;
+    }
+  }
+}
+
+.table {
+  width: 100%;
+
+  &--th {
+    background: $th-bg;
+    color: $th-color;
+    font-size: .875rem;
+    vertical-align: middle;
+    padding: .375rem .875rem;
+    line-height: 1.3rem;
+    font-weight: normal;
+    text-align: left;
+  }
+  &--td {
+    padding: .25rem .875rem;
+    line-height: 1.3rem;
+    background: #fff;
+    border-left: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+
+    &:last-of-type {
+      border-right: 1px solid $border-color;
+    }
+  }
+  thead {
+    tr:first-of-type {
+      & > :first-of-type {
+        border-top-left-radius: $border-radius;
+      }
+      & > :last-of-type {
+        border-top-right-radius: $border-radius;
+      }
+    }
+  }
+  tbody {
+    tr:last-of-type {
+      & > :first-of-type {
+        border-bottom-left-radius: $border-radius;
+      }
+      & > :last-of-type {
+        border-bottom-right-radius: $border-radius;
+      }
+    }
+  }
+}
