@@ -3,7 +3,9 @@ const INPUT_CHANGE = 'INPUT CHANGE',
     OPEN_MODAL = 'OPEN MODAL',
     CLOSE_MODAL = 'CLOSE MODAL',
     EDIT_ROW = 'EDIT ROW',
-    DELETE_ROW = 'DELETE ROW'
+    DELETE_ROW = 'DELETE ROW',
+    DELETE_TABLE = 'DELETE TABLE',
+    COPY_TABLE = 'COPY TABLE'
 
 let initialState = {
     formData: {
@@ -56,7 +58,7 @@ let initialState = {
 const pageReducer = (state = initialState, action) => {
 
     let stateCopy = {...state};
-    let table, row;
+    let table, row, idx;
 
     switch (action.type) {
         case INPUT_CHANGE:
@@ -93,11 +95,33 @@ const pageReducer = (state = initialState, action) => {
 
             table.data.splice([action.data.rowId], 1);
             if (table.data.length === 0 && action.data.tableId !== 0) {
-                let filteredTables = stateCopy.tables.filter(table => table.id !== action.data.tableId);
-                stateCopy.tables = filteredTables;
+                stateCopy.tables = stateCopy.tables.filter(table => table.id !== action.data.tableId);
             }
 
             stateCopy.tables = [...stateCopy.tables];
+
+            return stateCopy;
+        case COPY_TABLE:
+            idx = stateCopy.tables.findIndex(table => table.id === action.data.tableId);
+
+            if (idx > -1) {
+                let tableCopy = {
+                    id: stateCopy.nextId,
+                    data: stateCopy.tables[idx].data.map(row => {return {...row}})
+                }
+                stateCopy.nextId++;
+                stateCopy.tables.splice(idx + 1, 0, tableCopy);
+                stateCopy.tables = [...stateCopy.tables];
+            }
+
+            return stateCopy;
+        case DELETE_TABLE:
+            idx = stateCopy.tables.findIndex(table => table.id === action.data.tableId);
+
+            if (idx > 0) {
+                stateCopy.tables.splice(idx, 1);
+                stateCopy.tables = [...stateCopy.tables];
+            }
 
             return stateCopy;
         case OPEN_MODAL:
@@ -124,6 +148,8 @@ export const inputChangeCreator = (action) => ({type: INPUT_CHANGE, data: action
 export const saveDataCreator = () => ({type: SAVE_DATA});
 export const editRowCreator = (action) => ({type: EDIT_ROW, data: action});
 export const deleteRowCreator = (action) => ({type: DELETE_ROW, data: action});
+export const copyTableCreator = (action) => ({type: COPY_TABLE, data: action});
+export const deleteTableCreator = (action) => ({type: DELETE_TABLE, data: action});
 export const openModalCreator = (action) => ({type: OPEN_MODAL, data: action});
 export const closeModalCreator = () => ({type: CLOSE_MODAL});
 

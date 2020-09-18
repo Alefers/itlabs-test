@@ -1,6 +1,9 @@
 .table {
   width: 100%;
 
+  &-wrapper {
+    margin-bottom: 2rem;
+  }
   &--th {
     background: $th-bg;
     color: $th-color;
@@ -48,9 +51,132 @@
     justify-content: space-around;
     align-items: center;
 
-    &-link {
+    &-element {
       display: block;
       padding: 0 .5rem;
+    }
+  }
+  &-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: .875rem;
+
+    & > * {
+      margin: 0 .5rem;
+    }
+    &--copy {
+      display: inline-block;
+      padding: 0 1.5rem;
+      border: 0;
+      background: $primary;
+      font-size: .875rem;
+      line-height: 1.5rem;
+      color: #fff;
+      border-radius: $border-radius;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        background: darken($primary, 20%);
+      }
+    }
+    &--remove {
+      display: inline-block;
+      position: relative;
+      height: 25px;
+      width: 25px;
+      border: 0;
+      background: transparent;
+
+      span {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        transform: scale(0);
+        background: $danger;
+        opacity: .8;
+        border-radius: 50%;
+        transition: all .2s ease-in-out;
+      }
+      &:after,
+      &:before {
+        display: block;
+        position: absolute;
+        content: '';
+        height: 15px;
+        width: 2px;
+        top: 5px;
+        left: 12px;
+        background: $danger;
+        z-index: 2;
+        transition: all .2s ease-in-out;
+      }
+      &:before {
+        transform: rotate(-45deg);
+      }
+      &:after {
+        transform: rotate(45deg);
+      }
+      &:hover {
+        span {
+          transform: scale(1);
+          background: lighten($danger, 30%);
+          opacity: .7;
+        }
+      }
+    }
+  }
+}
+
+.mobile-table {
+  font-size: .875rem;
+
+  &--header {
+    background: $th-bg;
+    color: $th-color;
+    font-size: .875rem;
+    padding: .375rem .875rem;
+    line-height: 1.3rem;
+    font-weight: normal;
+    text-align: left;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+  &--row {
+    border: 1px solid $border-color;
+    border-top: 0;
+
+    &-actions {
+      padding: .75rem .875rem 1rem;
+      display: flex;
+      justify-content: space-around;
+      background: darken($body-bg, 10%);
+
+      &-element {
+        display: block;
+        padding: 0 .5rem;
+      }
+    }
+  }
+  &--field {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: .25rem .875rem;
+    line-height: 1.3rem;
+
+    &-name {
+      color: lighten($text-darkgray, 10%);
+      font-size: .75rem;
+    }
+    &.mobile-table--field_first {
+      padding-top: .75rem;
+    }
+    &.mobile-table--field_last {
+      padding-bottom: .75rem;
     }
   }
 }

@@ -1,7 +1,10 @@
 import Page from "./Page";
 import {connect} from "react-redux";
 import {
-    closeModalCreator, deleteRowCreator,
+    closeModalCreator,
+    copyTableCreator,
+    deleteRowCreator,
+    deleteTableCreator,
     editRowCreator,
     inputChangeCreator,
     openModalCreator,
@@ -28,6 +31,12 @@ let mapDispatchToProps = (dispatch) => {
         },
         deleteRow: (action) => {
             dispatch(deleteRowCreator(action));
+        },
+        copyTable: (action) => {
+            dispatch(copyTableCreator(action));
+        },
+        deleteTable: (action) => {
+            dispatch(deleteTableCreator(action));
         },
         openModal: (action) => {
             dispatch(openModalCreator(action));
