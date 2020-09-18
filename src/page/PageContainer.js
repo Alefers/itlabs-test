@@ -1,11 +1,18 @@
 import Page from "./Page";
 import {connect} from "react-redux";
-import {inputChangeCreator, saveDataCreator} from "../redux/reducers/page-reducer";
+import {
+    closeModalCreator, deleteRowCreator,
+    editRowCreator,
+    inputChangeCreator,
+    openModalCreator,
+    saveDataCreator
+} from "../redux/reducers/page-reducer";
 
 let mapStateToProps = (state) => {
     return {
-        formData: state.formData,
-        table: state.tables
+        formData: state.pageReducer.formData,
+        tables: state.pageReducer.tables,
+        modal: state.pageReducer.modal
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -13,9 +20,21 @@ let mapDispatchToProps = (dispatch) => {
         inputChange: (action) => {
             dispatch(inputChangeCreator(action));
         },
-        saveData: (action) => {
-            dispatch(saveDataCreator(action));
-        }
+        saveData: () => {
+            dispatch(saveDataCreator());
+        },
+        editRow: (action) => {
+            dispatch(editRowCreator(action));
+        },
+        deleteRow: (action) => {
+            dispatch(deleteRowCreator(action));
+        },
+        openModal: (action) => {
+            dispatch(openModalCreator(action));
+        },
+        closeModal: () => {
+            dispatch(closeModalCreator());
+        },
     }
 }
 

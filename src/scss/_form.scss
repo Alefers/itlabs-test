@@ -1,0 +1,108 @@
+.form {
+  width: 100%;
+  display: block;
+  padding: 1.125rem 1rem 1.5rem;
+  background: #fff;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+  &--controls-wrapper {
+    margin: 0 auto;
+    max-width: 350px;
+    padding-top: .75rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  .form {
+    &--controls-wrapper {
+      max-width: none;
+    }
+  }
+}
+
+.form-element {
+  display: block;
+  width: 100%;
+  margin-bottom: 1.125rem; // Этого тут по БЭМ быть не должно, но в данном случае решил делать без доп обёртки - просто в разы меньше нод.
+
+  &_half {
+    width: 50%;
+  }
+  &--input {
+    width: 100%;
+    display: block;
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+    background: #fff;
+    padding: 0 1.125rem;
+    height: 2.625rem;
+    font-size: .75rem;
+    color: $text-darkgray;
+    transition: box-shadow .1s ease-in-out;
+    box-shadow: 0 0 0 0 transparent;
+
+    &::placeholder {
+      color: $text-lightgray;
+    }
+    &:focus {
+      box-shadow: 0 0 5px 0 rgba(19, 147, 255, .5);
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
+  }
+  &--checkbox {
+    display: none;
+
+    &-label {
+      display: block;
+      padding: .5rem 0 0 2.375rem;
+      position: relative;
+      color: $text-darkgray;
+
+      &:before {
+        display: block;
+        position: absolute;
+        content: '';
+        height: 1.5rem;
+        width: 1.5rem;
+        left: 0;
+        top: .125rem;
+        border: 1px solid $border-color;
+        border-radius: $border-radius;
+        box-sizing: border-box;
+      }
+    }
+    &:checked + .form-element--checkbox-label {
+      &:after {
+        display: block;
+        position: absolute;
+        font-family: Arial;
+        content: '✓';
+        font-size: 2rem;
+        top: -.25rem;
+        left: .125rem;
+      }
+    }
+  }
+  &--button {
+    width: 100%;
+    display: block;
+    border: 1px solid $primary;
+    border-radius: $border-radius;
+    background: $primary;
+    color: #fff;
+    font-size: .875rem;
+    font-weight: bold;
+    transition: all .2s ease-in-out;
+    text-transform: uppercase;
+    line-height: 1.3rem;
+    padding: .625rem 1.125rem;
+
+    &:hover {
+      background: #fff;
+      color: $primary;
+    }
+  }
+}

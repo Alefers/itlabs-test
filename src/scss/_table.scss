@@ -1,0 +1,56 @@
+.table {
+  width: 100%;
+
+  &--th {
+    background: $th-bg;
+    color: $th-color;
+    font-size: .875rem;
+    vertical-align: middle;
+    padding: .375rem .875rem;
+    line-height: 1.3rem;
+    font-weight: normal;
+    text-align: left;
+  }
+  &--td {
+    padding: .25rem .875rem;
+    line-height: 1.3rem;
+    background: #fff;
+    border-left: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+
+    &:last-of-type {
+      border-right: 1px solid $border-color;
+    }
+  }
+  thead {
+    tr:first-of-type {
+      & > :first-of-type {
+        border-top-left-radius: $border-radius;
+      }
+      & > :last-of-type {
+        border-top-right-radius: $border-radius;
+      }
+    }
+  }
+  tbody {
+    tr:last-of-type {
+      & > :first-of-type {
+        border-bottom-left-radius: $border-radius;
+      }
+      & > :last-of-type {
+        border-bottom-right-radius: $border-radius;
+      }
+    }
+  }
+  &--row-actions {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &-link {
+      display: block;
+      padding: 0 .5rem;
+    }
+  }
+}
